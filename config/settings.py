@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'employees',
     'attendance',
     'payroll',
-    'employee_payroll_sqlite',
 ]
 
 MIDDLEWARE = [
