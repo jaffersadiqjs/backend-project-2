@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Payroll Generated for {{ month }}/{{ year }}</h2>
+<p><a href="{% url 'payroll:payroll_list' %}">Back to Payroll List</a></p>
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr><th>Emp ID</th><th>Name</th><th>Present Days</th><th>Net Salary</th><th>Slip</th></tr>
+  {% for p in payrolls %}
+  <tr>
+    <td>{{ p.employee.emp_id }}</td>
+    <td>{{ p.employee.name }}</td>
+    <td>{{ p.present_days }}</td>
+    <td>₹{{ p.net_salary }}</td>
+    <td><a href="{% url 'payroll:salary_slip_pdf' p.pk %}">PDF</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

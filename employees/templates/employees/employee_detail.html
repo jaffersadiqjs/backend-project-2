@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Employee: {{ employee.name }}</h2>
+<ul>
+  <li><strong>Emp ID:</strong> {{ employee.emp_id }}</li>
+  <li><strong>Department:</strong> {{ employee.department }}</li>
+  <li><strong>Designation:</strong> {{ employee.designation }}</li>
+  <li><strong>Daily Salary:</strong> ₹{{ employee.salary_per_day }}</li>
+  <li><strong>Date Joined:</strong> {{ employee.date_joined }}</li>
+</ul>
+
+{% if confirm_delete %}
+  <form method="post">{% csrf_token %}<button type="submit">Confirm Delete</button> <a href="{% url 'employees:employee_list' %}">Cancel</a></form>
+{% else %}
+  <a href="{% url 'employees:employee_update' employee.pk %}">Edit</a> |
+  <a href="{% url 'employees:employee_list' %}">Back to list</a>
+{% endif %}
+{% endblock %}
